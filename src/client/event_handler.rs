@@ -1,6 +1,6 @@
 use async_trait::async_trait;
 
-use crate::{prelude::{Message, SocketError, Channel, Server}, models::{events::server::{MessageDeleteEvent, MessageUpdateEvent, BulkEvent, ReadyEvent, MessageAppend, MessageReactEvent, RemoveReactionEvent, ChannelUpdateEvent, Event, ChannelMessageAcknowledgeEvent, ServerUpdateEvent, ServerMemberUpdate, ServerRoleUpdate, RoleEvent, UserUpdate, UserRelationshipEvent, AuthEvent, ServerError, PongEvent, MessageAppendEvent, UserPlatformWipeEvent}, Emoji}};
+use crate::{prelude::{Message, SocketError, Channel, Server, PartialMessage}, models::{events::server::{MessageDeleteEvent, BulkEvent, ReadyEvent, MessageReactEvent, RemoveReactionEvent, ChannelUpdateEvent, Event, ChannelMessageAcknowledgeEvent, ServerUpdateEvent, ServerMemberUpdate, ServerRoleUpdate, RoleEvent, UserUpdate, UserRelationshipEvent, AuthEvent, ServerError, PongEvent, UserPlatformWipeEvent, EmbedAppendEvent}, Emoji}};
 
 use super::context::Context;
 
@@ -20,13 +20,13 @@ pub trait EventHandler: Send + Sync {
 
     async fn ready(&self, _ctx: &mut Context, _ready: ReadyEvent) { }
 
-    async fn message(&self, _ctx: &mut Context, _msg: Message) { }
+    async fn message_received(&self, _ctx: &mut Context, _msg: Message) { }
 
-    async fn message_updated(&self, _ctx: &mut Context, _msg_update: MessageUpdateEvent) { }
+    async fn message_updated(&self, _ctx: &mut Context, _msg: PartialMessage) { }
 
-    async fn message_append(&self, _ctx: &mut Context, _append: MessageAppendEvent) { }
+    async fn embed_append(&self, _ctx: &mut Context, _append: EmbedAppendEvent) { }
 
-    async fn message_deleted(&self, _ctx: &mut Context, _msg_delete: MessageDeleteEvent) { }
+    async fn message_deleted(&self, _ctx: &mut Context, _msg: Message) { }
 
     async fn message_reacted(&self, _ctx: &mut Context, _msg_react: MessageReactEvent) { }
 

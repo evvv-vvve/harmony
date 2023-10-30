@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::prelude::{File, PermissionOverride};
 
-#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, Clone)]
 pub struct TextChannel {
     #[serde(rename = "server")]
     server_id: String,

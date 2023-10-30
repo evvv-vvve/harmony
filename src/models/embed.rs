@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 use super::file::File;
 
-#[derive(Debug, Serialize, Deserialize, Clone)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 #[serde(tag = "type")]
 pub enum Embed {
     Website {
@@ -55,13 +55,13 @@ pub enum Embed {
     None
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 pub enum Size {
     Large,
     Preview
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 pub struct Image {
     pub url: String,
     pub width: usize,
@@ -69,14 +69,14 @@ pub struct Image {
     pub size: Size,
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Clone)]
 pub struct Video {
     pub url: String,
     pub width: usize,
     pub height: usize,
 }
 
-#[derive(Debug, Serialize, Deserialize, Default, Clone)]
+#[derive(Debug, Serialize, Deserialize, Default, PartialEq, Clone)]
 #[serde(tag = "type")]
 pub enum RemoteContent {
     #[default]
@@ -109,7 +109,7 @@ pub enum RemoteContent {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, Default, Clone)]
+#[derive(Debug, Serialize, Deserialize, Default, PartialEq, Clone)]
 pub enum ContentType {
     #[default]
     None,

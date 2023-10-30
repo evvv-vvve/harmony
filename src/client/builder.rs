@@ -14,6 +14,8 @@ pub struct RevoltClientBuilder {
     socket_config: websocket::ClientConfigBuilder,
     event_handler: Option<Arc<dyn EventHandler>>,
     token: Option<String>,
+
+    max_messages: usize,
 }
 
 impl RevoltClientBuilder {
@@ -23,7 +25,14 @@ impl RevoltClientBuilder {
             socket_config: ClientConfigBuilder::new(),
             event_handler: None,
             token: None,
+            max_messages: 256,
         }
+    }
+
+    pub fn set_max_cache_messages(mut self, max_messages: usize) -> Self {
+        self.max_messages = max_messages;
+
+        self
     }
 
     pub fn with_event_handler(mut self, event_handler: Arc<dyn EventHandler>) -> Self {
@@ -84,7 +93,7 @@ impl RevoltClientBuilder {
         let socket = SocketClient::connect(socket_config).await;
 
         Ok(RevoltClient {
-            cache: Cache::new(),
+            cache: Cache::new(self.max_messages),
             http,
             socket,
             event_handler: self.event_handler,

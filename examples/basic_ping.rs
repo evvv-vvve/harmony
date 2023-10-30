@@ -1,16 +1,20 @@
 use std::sync::Arc;
 
 use async_trait::async_trait;
-use harmony::{prelude::{PartialMessage, Message}, client::{RevoltClient, event_handler::{EventHandler, self}, context::Context}};
+use harmony::{prelude::Message, client::{RevoltClient, event_handler::EventHandler, context::Context}};
 
 pub struct Handler;
 
 #[async_trait]
 impl EventHandler for Handler {
-    async fn message(&self, ctx: &mut Context, msg: Message) {
+    async fn message_received(&self, ctx: &mut Context, msg: Message) {
         if let Some(content) = msg.content {
             if content.starts_with("!ping") {
-                ctx.http.say(&msg.channel, "Pong!").await.unwrap();
+                let channel = ctx.channel.clone().unwrap();
+
+                if let Err(err) = channel.say(ctx, "Pong!").await {
+                    println!("Could not send message: {err:#?}");
+                }
             }
         }
     }

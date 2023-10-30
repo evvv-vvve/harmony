@@ -5,13 +5,13 @@ use serde::{Deserialize, Serialize};
 
 use super::prelude::{File, Embed};
 
-#[derive(Debug, Deserialize, Clone)]
+#[derive(Debug, Deserialize, PartialEq, Clone)]
 pub struct WebhookInfo {
     name: String,
     avatar: String,
 }
 
-#[derive(Debug, Deserialize, Clone)]
+#[derive(Debug, Deserialize, PartialEq, Clone)]
 #[serde(tag = "type")]
 pub enum SystemEventMessage {
     Text {
@@ -63,10 +63,10 @@ pub enum SystemEventMessage {
     },
 }
 
-#[derive(Debug, Deserialize, Clone, Default)]
+#[derive(Debug, Deserialize, Clone, PartialEq, Default)]
 pub struct Message {
     #[serde(rename = "_id")]
-    pub id: Option<String>,
+    pub id: String,
     #[serde(default)]
     pub nonce: Option<String>,
     pub channel: String,
@@ -95,7 +95,7 @@ pub struct Message {
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct PartialMessage {
-    pub content: String,
+    pub content: Option<String>,
     pub attachments: Option<Vec<File>>,
     pub embeds: Option<Vec<Embed>>,
     pub replies: Option<Vec<String>>,
@@ -103,7 +103,7 @@ pub struct PartialMessage {
     pub masquerade: Option<Masquerade>,
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone, Default)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Default)]
 pub struct Masquerade {
     #[serde(default)]
     pub name: Option<String>,
@@ -113,7 +113,7 @@ pub struct Masquerade {
     pub colour: Option<String>
 }
 
-#[derive(Debug, Deserialize, Default, Clone)]
+#[derive(Debug, Deserialize, Default, PartialEq, Clone)]
 pub struct Interactions {
     #[serde(default)]
     pub reactions: Vec<String>,

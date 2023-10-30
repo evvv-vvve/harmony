@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use super::file::File;
+use super::{file::File, Badge};
 
 #[derive(Debug, Deserialize, Clone, PartialEq, Default)]
 pub struct User {
@@ -14,8 +14,11 @@ pub struct User {
     pub avatar: Option<File>,
     #[serde(default)]
     pub relations: Vec<Relationship>,
+    #[serde(rename = "badges")]
     #[serde(default)]
-    pub badges: i32,
+    pub badges_bitfield: i32,
+    #[serde(skip)]
+    pub badges: Vec<Badge>,
     #[serde(default)]
     pub status: Status,
     #[serde(default)]

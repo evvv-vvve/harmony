@@ -69,7 +69,7 @@ pub struct Role {
     pub rank: i32,
 }
 
-#[derive(Debug, Serialize, Deserialize, Default, Clone, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, Default, Clone, Eq, PartialEq)]
 pub struct PermissionOverride {
     #[serde(rename = "a")]
     #[serde(default)]

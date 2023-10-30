@@ -28,7 +28,7 @@ pub enum ServerEvent {
     Ready(ReadyEvent),
     Message(Message),
     MessageUpdate(MessageUpdateEvent),
-    MessageAppend(MessageAppendEvent),
+    MessageAppend(EmbedAppendEvent),
     MessageDelete(MessageDeleteEvent),
     MessageReact(MessageReactEvent),
     MessageUnreact(MessageReactEvent),
@@ -45,8 +45,8 @@ pub enum ServerEvent {
     ServerUpdate(ServerUpdateEvent),
     ServerDelete { id: String },
     ServerMemberUpdate(ServerMemberUpdate),
-    ServerMemberJoined(Event),
-    ServerMemberLeft(Event),
+    ServerMemberJoin(Event),
+    ServerMemberLeave(Event),
     ServerRoleUpdate(ServerRoleUpdate),
     ServerRoleDelete(RoleEvent),
     UserUpdate(UserUpdate),
@@ -220,14 +220,15 @@ pub struct MessageDeleteEvent {
 }
 
 #[derive(Debug, Deserialize, Clone)]
-pub struct MessageAppendEvent {
-    pub id: String,
+pub struct EmbedAppendEvent {
+    #[serde(rename = "id")]
+    pub message: String,
     pub channel: String,
-    pub append: MessageAppend,
+    pub append: EmbedAppends,
 }
 
 #[derive(Debug, Deserialize, Clone)]
-pub struct MessageAppend {
+pub struct EmbedAppends {
     pub embeds: Option<Vec<Embed>>,
 }
 
@@ -276,7 +277,7 @@ pub struct MemberId {
 #[derive(Debug, Deserialize, Clone)]
 pub struct BulkEvent {
     #[serde(rename = "v")]
-    events: Vec<ServerEvent>
+    pub events: Vec<ServerEvent>
 }
 
 #[derive(Debug, Deserialize, Clone)]

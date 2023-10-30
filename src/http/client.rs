@@ -92,20 +92,6 @@ impl HttpClient {
 }
 
 impl HttpClient {
-    pub async fn say(&self, channel_id: &str, msg: &str) -> HttpResult<Message> {
-        let msg = PartialMessage {
-            content: msg.to_string(),
-            ..Default::default()
-        };
-
-        self.send_msg_in_channel(channel_id, msg).await
-    }
-    pub async fn send_msg_in_channel(&self, channel_id: &str, msg: PartialMessage) -> HttpResult<Message> {
-        self.post::<Message, PartialMessage>(&format!("/channels/{channel_id}/messages"), msg).await
-    }
-}
-
-impl HttpClient {
     pub async fn get_server(&self, server_id: &str) -> HttpResult<Server> {
         self.get::<Server>(&format!("/servers/{server_id}")).await
     }
@@ -114,5 +100,23 @@ impl HttpClient {
 impl HttpClient {
     pub async fn get_channel(&self, channel_id: &str) -> HttpResult<Channel> {
         self.get::<Channel>(&format!("/channels/{channel_id}")).await
+    }
+
+    pub async fn get_message(&self, channel_id: &str, message_id: &str) -> HttpResult<Message> {
+        self.get::<Message>(&format!("/channels/{channel_id}/messages/{message_id}")).await
+    }
+}
+
+impl HttpClient {
+    pub async fn say(&self, channel_id: &str, msg: &str) -> HttpResult<Message> {
+        let msg = PartialMessage {
+            content: Some(msg.to_string()),
+            ..Default::default()
+        };
+
+        self.send_msg_in_channel(channel_id, msg).await
+    }
+    pub async fn send_msg_in_channel(&self, channel_id: &str, msg: PartialMessage) -> HttpResult<Message> {
+        self.post::<Message, PartialMessage>(&format!("/channels/{channel_id}/messages"), msg).await
     }
 }
