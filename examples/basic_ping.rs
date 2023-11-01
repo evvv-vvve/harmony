@@ -1,7 +1,5 @@
-use std::sync::Arc;
-
 use async_trait::async_trait;
-use harmony::{prelude::Message, client::{RevoltClient, event_handler::EventHandler, context::Context}};
+use harmony::{client::{event_handler::EventHandler, context::Context, RevoltClient}, models::message::Message};
 
 pub struct Handler;
 

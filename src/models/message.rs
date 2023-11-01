@@ -3,7 +3,7 @@ use std::collections::{HashMap, HashSet};
 use iso8601_timestamp::Timestamp;
 use serde::{Deserialize, Serialize};
 
-use super::prelude::{File, Embed};
+use super::{file::File, embed::Embed};
 
 #[derive(Debug, Deserialize, PartialEq, Clone)]
 pub struct WebhookInfo {

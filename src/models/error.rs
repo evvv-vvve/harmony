@@ -1,6 +1,6 @@
 use serde::Deserialize;
 
-use super::{Permission, prelude::UserPermission};
+use super::{Permission, user::UserPermission};
 
 /// Represents an error when performing an action with Revolt's API
 #[derive(Debug, Deserialize)]

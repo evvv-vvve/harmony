@@ -1,6 +1,6 @@
 use std::collections::BTreeMap;
 
-use crate::prelude::{User, Channel, Server, Message, PartialMessage};
+use crate::models::{user::User, channel::Channel, server::Server, message::{Message, PartialMessage}};
 
 /*type Result<T> = std::result::Result<T, CacheError>;
 

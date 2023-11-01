@@ -1,6 +1,6 @@
 use serde::Deserialize;
 
-use crate::prelude::PermissionOverride;
+use crate::models::server::PermissionOverride;
 
 #[derive(Debug, Deserialize, Clone)]
 pub struct PartialChannel {

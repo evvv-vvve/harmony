@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use crate::prelude::File;
+use crate::models::file::File;
 
 #[derive(Debug, Deserialize, Serialize, Clone, PartialEq, Eq, Default)]
 pub struct GroupChannel {

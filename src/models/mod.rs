@@ -1,5 +1,3 @@
-use std::default;
-
 use serde::{Deserialize, Serialize};
 
 pub mod error;
@@ -11,21 +9,6 @@ pub mod server;
 pub mod channel;
 pub mod message;
 pub mod embed;
-
-pub mod prelude {
-    pub use super::{
-        revolt::*,
-        error::*,
-        file::*,
-        user::*,
-        server::*,
-        channel::*,
-        message::*,
-        embed::*,
-    };
-
-    pub use super::Permission;
-}
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 #[serde(tag = "type")]

@@ -1,7 +1,7 @@
 use iso8601_timestamp::Timestamp;
 use serde::Deserialize;
 
-use crate::{models::{prelude::{User, Server, Channel, Message, PartialMessage, Embed, partial_channel::PartialChannel}, Emoji, file::File, server::PartialServer}, prelude::RelationshipStatus};
+use crate::models::{message::{Message, PartialMessage}, channel::{Channel, partial_channel::PartialChannel}, server::{Server, PartialServer}, Emoji, user::{RelationshipStatus, User}, embed::Embed, file::File};
 
 #[derive(Debug, Deserialize, thiserror::Error, Default, Clone)]
 pub enum ServerError {

@@ -2,7 +2,7 @@ use std::sync::Arc;
 
 use async_channel::RecvError;
 
-use crate::{prelude::{SocketClient, HttpClient, SocketError, User, PartialMessage, Channel, Message}, models::events::server::{ServerEvent, AuthEvent}, cache::Cache};
+use crate::{websocket::{SocketError, SocketClient}, cache::Cache, http::client::HttpClient, models::{user::User, events::server::ServerEvent, message::PartialMessage}};
 
 use self::{event_handler::EventHandler, builder::RevoltClientBuilder, context::Context, harmony_error::HarmonyError};
 

@@ -1,7 +1,7 @@
 use reqwest::Response;
 use serde::{de::DeserializeOwned, Serialize};
 
-use crate::{models::{user::User, prelude::{RevoltInfo, PartialMessage, Message, RevoltError}, server::Server}, prelude::Channel};
+use crate::models::{error::RevoltError, revolt::RevoltInfo, user::User, server::Server, channel::Channel, message::{Message, PartialMessage}};
 
 use super::prelude::HttpClientBuilder;
 

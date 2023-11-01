@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 use serde::{Deserialize, Serialize};
 
-use super::prelude::File;
+use super::file::File;
 
 #[derive(Debug, Deserialize, Clone, PartialEq, Default)]
 pub struct Server {

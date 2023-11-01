@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use crate::prelude::{File, PermissionOverride};
+use crate::models::{file::File, server::PermissionOverride};
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, Clone)]
 pub struct TextChannel {

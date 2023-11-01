@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use crate::prelude::{PermissionOverride, File};
+use crate::models::{file::File, server::PermissionOverride};
 
 #[derive(Debug, Deserialize, Serialize, Clone, Eq, PartialEq, Default)]
 pub struct VoiceChannel {

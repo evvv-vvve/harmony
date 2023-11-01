@@ -1,4 +1,4 @@
-use crate::{http::prelude::HttpClient, cache::Cache, prelude::{User, Channel, Server, Message}};
+use crate::{http::prelude::HttpClient, cache::Cache, models::{user::User, server::Server, channel::Channel, message::Message}, };
 
 use super::{harmony_error::HarmonyError, RevoltClient};
 

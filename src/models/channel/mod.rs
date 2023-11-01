@@ -1,8 +1,10 @@
 use serde::{Deserialize, Serialize};
 
-use crate::{client::context::Context, prelude::{Message, PartialMessage}, http::prelude::HttpError};
+use crate::{client::context::Context, http::prelude::HttpError};
 
 use self::{text_channel::TextChannel, notes_channel::NotesChannel, dm_channel::DMChannel, group_channel::GroupChannel, voice_channel::VoiceChannel};
+
+use super::message::{PartialMessage, Message};
 
 pub mod partial_channel;
 pub mod text_channel;
