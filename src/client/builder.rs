@@ -35,8 +35,8 @@ impl RevoltClientBuilder {
         self
     }
 
-    pub fn with_event_handler(mut self, event_handler: Arc<dyn EventHandler>) -> Self {
-        self.event_handler = Some(event_handler);
+    pub fn with_event_handler<T: EventHandler + 'static>(mut self, event_handler: T) -> Self {
+        self.event_handler = Some(Arc::new(event_handler));
 
         self
     }

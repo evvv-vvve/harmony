@@ -27,7 +27,7 @@ async fn main() {
     let mut client = RevoltClient::builder()
         .with_token(&token)
         .with_packet_format(harmony::websocket::PacketFormat::Json)
-        .with_event_handler(Arc::new(Handler))
+        .with_event_handler(Handler)
         .build()
         .await
         .unwrap();
